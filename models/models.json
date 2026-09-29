@@ -1,0 +1,13 @@
+[
+  {
+    "file": "yolo26n.onnx",
+    "name": "YOLO26n (nano)",
+    "description": "Nano model. Fast on CPU, the baseline.",
+    "default": true
+  },
+  {
+    "file": "yolo26x.onnx",
+    "name": "YOLO26x (large)",
+    "description": "Extra-large model, same data and training settings as the nano. Much slower on CPU: use fewer frames per second for video."
+  }
+]
