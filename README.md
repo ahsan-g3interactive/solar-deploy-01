@@ -4,8 +4,8 @@ Streamlit app that runs YOLO ONNX models on solar panel photos (upload or image 
 videos, draws the detected defects with class name and confidence, and lists every detection.
 Detections below the "Human review below" threshold are flagged **Human Review Required**.
 
-Models: **YOLO26n (nano)**, the fast baseline, and **YOLO26x (large)**, trained on the same data
-with the same settings. Both use the classes:  Healthy, Dust or dirt accumulation, Bird droppings/environmental contamination,
+Models: **YOLO26n (nano)**, the fast baseline, **YOLO12s (small)**, a middle ground between speed
+and accuracy, and **YOLO26x (large)**, all trained on the same data. All use the classes: Healthy, Dust or dirt accumulation, Bird droppings/environmental contamination,
 Cracks, Physical damage, Other visible abnormalities, Snow, Leaf/feather debris.
 
 > The RGB model finds visible surface defects only. It must **not** be used to declare a panel
@@ -66,11 +66,12 @@ delete false alerts, add missed incidents) and upload it back as ground truth.
 - `evaluation.py`: incident-level metrics against ground truth
 - `tools/split_by_flight.py`: flight/site-based train/val/test split for retraining
 - `models/models.json`: model registry (file, display name, description, default)
-- `models/yolo26n.onnx`: YOLO26n (nano) baseline; `models/yolo26x.onnx`: YOLO26x (large)
+- `models/yolo26n.onnx`: YOLO26n (nano) baseline; `models/yolo12s.onnx`: YOLO12s (small);
+  `models/yolo26x.onnx`: YOLO26x (large)
 - `tools/check_models.py`: pre-push check that every model loads, runs, and is tracked by Git LFS
 - `requirements.txt`: Python dependencies
 
-Supported ONNX outputs: Ultralytics YOLOv8/YOLO11/YOLO26 detection heads, `(1, 4+nc, N)` or the
+Supported ONNX outputs: Ultralytics YOLOv8/YOLO11/YOLO12/YOLO26 detection heads, `(1, 4+nc, N)` or the
 end-to-end `(1, K, 6)` export. Class names are read from the model metadata.
 
 ## Adding a model
@@ -89,7 +90,7 @@ Unregistered `.onnx` files in `models/` still appear, under their file name. A l
 file is missing (or is only an LFS pointer) is shown greyed out in the sidebar instead of crashing.
 
 Large models are much slower on CPU; the Drone video tab estimates the processing time per model
-before you start. On Streamlit Community Cloud, memory is limited: keeping both models loaded
+before you start. On Streamlit Community Cloud, memory is limited: keeping all models loaded
 uses noticeably more RAM than the files themselves, so check the app's resource usage after deploying.
 
 ## Run locally
