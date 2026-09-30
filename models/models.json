@@ -9,5 +9,10 @@
     "file": "yolo26x.onnx",
     "name": "YOLO26x (large)",
     "description": "Extra-large model, same data and training settings as the nano. Much slower on CPU: use fewer frames per second for video."
+  },
+  {
+    "file": "yolo12s.onnx",
+    "name": "YOLO12s (small)",
+    "description": "Small model, good balance between speed and accuracy."
   }
 ]

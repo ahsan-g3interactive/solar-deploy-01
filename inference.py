@@ -4,7 +4,7 @@ Pre-processing, NMS and drawing are ported from Solar/onnx_inference_test.ipynb
 so the Streamlit app produces the same output as the notebook.
 
 Supported ONNX output layouts:
-  - (1, 4 + nc, N)  raw YOLOv8/YOLO11/YOLO26 head (end2end=False), e.g. best.onnx
+  - (1, 4 + nc, N)  raw YOLOv8/YOLO11/YOLO12/YOLO26 head (end2end=False), e.g. best.onnx
   - (1, N, 4 + nc)  the same, transposed
   - (1, K, 6)       end-to-end export: x1, y1, x2, y2, score, class_id
 """
